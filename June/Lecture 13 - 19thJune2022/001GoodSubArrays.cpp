@@ -29,9 +29,9 @@ int main() {
 
 	int count = 0;
 	for(int i=0; i<N; i++) {
-		int x = freq[i];
-		if(x >= 2) {
-			count += x*(x-1)/2;
+		int x_i = freq[i];
+		if(x_i >= 2) {
+			count += x_i*(x_i-1)/2;
 		}
 	}
 
