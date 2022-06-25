@@ -7,7 +7,7 @@ int main() {
 	int arr[] = {10, 20, 30};
 	int n = sizeof(arr) / sizeof(int);
 
-	// iterate over numbers from 0 to 2^n-1
+	// iterate over numbers from 0 to (2^n)-1 ; pow(2, n)-1
 	for(int num=0; num<(1<<n); num++) {
 		// for each num, iterate over its n-bit representation
 		// from right to left starting from the 0th bits
