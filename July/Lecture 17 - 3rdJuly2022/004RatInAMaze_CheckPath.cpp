@@ -29,6 +29,38 @@ Example
 
 using namespace std;
 
+bool doesPathExist(char maze[][10], int i, int j) {
+
+	// base case
+	if(i == 0 and j == 0) {
+		// can you reach the (0, 0)th cell from (0, 0)th cell ? Yes
+		return true;
+	}
+
+	// recursive case
+
+	if(maze[i][j] == 'X') {
+		// can you reach a blocked cell ? No
+		return false;
+	}
+
+	if(i == 0) {
+		// ask your friend to check if there exists a path to reach (i, j-1)th cell from the (0, 0)th cell
+		return doesPathExist(maze, i, j-1);
+	}
+
+	if(j == 0) {
+		// ask your friend to check if there exists a path to reach (i-1, j)th cell from the (0, 0)th cell 
+		return doesPathExist(maze, i-1, j);
+	}
+
+	// ask your friend to check if there exists a path to the (i, j-1)th
+	// cell and (i-1, j)th cell from the (0, 0)th cell
+
+	return doesPathExist(maze, i, j-1) || doesPathExist(maze, i-1, j);
+
+}
+
 int main() {
 
 	char maze[][10] = {"0000",
@@ -37,6 +69,9 @@ int main() {
 	                   "0X00"};
 	int m = 4;
 	int n = 4;
+
+	doesPathExist(maze, m-1, n-1) ? cout << "true" << endl :
+	                                cout << "false" << endl;
 
 	return 0;
 }

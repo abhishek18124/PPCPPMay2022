@@ -32,19 +32,56 @@ Example
 
 using namespace std;
 
+int m = 4;
+int n = 4;
+
+void printPaths(char maze[][10], char soln[][10], int i, int j) {
+
+	if(i == 0 and j == 0) {
+		soln[i][j] = '1';
+		for(int i=0; i<m; i++) {
+			for(int j=0; j<n; j++) {
+				cout << soln[i][j] << " ";
+			}
+			cout << endl;
+		}
+		cout << endl;
+		soln[i][j] = '0';
+		return;
+	}
+
+	if(i < 0 or j < 0) {
+		return;
+	}
+
+	if(maze[i][j] == 'X') {
+		return;
+	}
+
+	soln[i][j] = '1';
+	printPaths(maze, soln, i, j-1);
+	// soln[i][j] = '0';
+
+	// soln[i][j] = '1';
+	printPaths(maze, soln, i-1, j);
+	soln[i][j] = '0'; // backtrack
+
+
+}
+
 int main() {
 
-	char maze[][10] = {"0X00",
-	           		   "00X0",
-	                   "000X",
-	                   "0X00"};
+	char maze[][10]  = {"0000",
+				        "00X0",
+			            "000X",
+			            "0X00"};
 
 	char soln[][10] = {"0000",
 	                   "0000",
 	                   "0000",
 	                   "0000"};
-	int m = 4;
-	int n = 4;
+
+	printPaths(maze, soln, m-1, n-1);
 
 	return 0;
 }

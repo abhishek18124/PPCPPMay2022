@@ -22,9 +22,18 @@ void generateSubsequences(char* inp, char* out, int i, int j, set<string>& s) {
 	// 1. include the char. at the ith index into the out. subseq.
 	out[j] = inp[i];
 	generateSubsequences(inp, out, i+1, j+1, s);
-
+	
 	// 2. exclude the char. at the ith index from the out. subseq.
 	generateSubsequences(inp, out, i+1, j, s);
+
+	// // 1. include the char. at the ith index into the out. subseq.
+	// out[j] = inp[i];
+	// j = j+1;
+	// generateSubsequences(inp, out, i+1, j, s);
+	// j = j-1; // backtracking
+
+	// // 2. exclude the char. at the ith index from the out. subseq.
+	// generateSubsequences(inp, out, i+1, j, s);
 
 }
 

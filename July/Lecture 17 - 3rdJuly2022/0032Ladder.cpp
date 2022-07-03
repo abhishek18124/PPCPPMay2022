@@ -27,13 +27,15 @@ int ladder(int n, int k) {
 		return 1;
 	}
 
+	if(n < 0) {
+		return 0;
+	}
+
 	// recursive case
 
 	int count = 0;
 	for(int j=1; j<=k; j++) {
-		if(n-j >= 0) {
-			count += ladder(n-j, k);
-		}
+		count += ladder(n-j, k);
 	}
 
 	return count;
