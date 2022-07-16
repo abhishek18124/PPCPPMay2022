@@ -18,21 +18,17 @@ class customer {
 			credits = c;
 		}
 
-		customer(customer& c) {
-			cout << "\nI am inside the default copy constructor\n";
-			name = new char[100];
-			strcpy(name, c.name);
-			age = c.age;
-			gender = c.gender;
-			credits = c.credits;
-		}
-
 		void printCustomerInfo() {
 			cout << "\nCustomer Information\n";
 			cout << "Name : " << name << endl;
 			cout << "Age : " << age << endl;
 			cout << "Gender : " << gender << endl;
 			cout << "Credits : " << credits << endl;
+		}
+
+		~customer() {
+			cout << "Inside " << name << "'s destructor" << endl;
+			delete [] name; 
 		}
 };
 
@@ -41,14 +37,8 @@ int main() {
 	customer c1("Aishnee", 19, 'F', 200);
 	c1.printCustomerInfo();
 
-	customer c2 = c1; // default copy constructor is invoked
+	customer c2("Tanishq", 20, 'M', 100);
 	c2.printCustomerInfo();
-
-	strcpy(c2.name, "Samriddhi");
-
-	c2.printCustomerInfo();
-
-	c1.printCustomerInfo();
 
 	return 0;
 }

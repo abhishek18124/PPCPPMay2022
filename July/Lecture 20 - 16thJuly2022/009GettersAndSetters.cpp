@@ -3,28 +3,26 @@
 using namespace std;
 
 class customer {
-	public :
-		char* name; // it is allocated memory on the heap
+
+	private :
+
 		int age;
+
+	public :
+		char name[100];
 		char gender;
 		double credits;
 
+		customer() {
+			cout << "I am inside the default constructor" << endl;
+		}
+
 		customer(char* n, int a, char g, double c) {
 			cout << "I am inside the parameterised constructor of the customer class" << endl;
-			name = new char[100];
 			strcpy(name, n);
 			age = a;
 			gender = g;
 			credits = c;
-		}
-
-		customer(customer& c) {
-			cout << "\nI am inside the default copy constructor\n";
-			name = new char[100];
-			strcpy(name, c.name);
-			age = c.age;
-			gender = c.gender;
-			credits = c.credits;
 		}
 
 		void printCustomerInfo() {
@@ -34,22 +32,30 @@ class customer {
 			cout << "Gender : " << gender << endl;
 			cout << "Credits : " << credits << endl;
 		}
+
+		int getAge() {
+			return age;
+		}
+
+		void setAge(int a) {
+			age = a;
+		}
+
+
+
 };
 
 int main() {
 
-	customer c1("Aishnee", 19, 'F', 200);
-	c1.printCustomerInfo();
+	customer c1("Tanishq", 20, 'M', 0); 
 
-	customer c2 = c1; // default copy constructor is invoked
-	c2.printCustomerInfo();
+	cout << "c1.age = " << c1.getAge() << endl;
+	// cout << "c1.age = " << c1.age << endl;
 
-	strcpy(c2.name, "Samriddhi");
+	c1.setAge(22);
 
-	c2.printCustomerInfo();
-
-	c1.printCustomerInfo();
-
+	cout << "c1.age = " << c1.getAge() << endl;
+		
 	return 0;
 }
 
